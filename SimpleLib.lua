@@ -1,3 +1,8 @@
+  local e = game:GetService("CoreGui"):FindFirstChild(self.base.Name)
+ if e then
+ e:Destroy()
+end
+
 local library = {flags = {}, windows = {}, open = true}
 
 --Services
