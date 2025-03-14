@@ -87,7 +87,7 @@ local function createOptionHolder(holderTitle, parent, parentTable, subHolder)
 		BackgroundColor3 = Color3.fromRGB(10, 10, 10),
 		BorderSizePixel = 0,
 		Text = holderTitle,
-		TextSize = 15,
+		TextSize = 17,
 		Font = Enum.Font.FredokaOne,
 		TextColor3 = Color3.fromRGB(255, 255, 255),
 		Parent = parentTable.main
