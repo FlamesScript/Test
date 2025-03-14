@@ -1,4 +1,4 @@
-  local e = game:GetService("CoreGui"):FindFirstChild(self.base.Name)
+  local e = game:GetService("CoreGui"):FindFirstChild("SimpleLib")
  if e then
  e:Destroy()
 end
