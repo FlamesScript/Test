@@ -59,7 +59,7 @@ local function spamTouch()
         for _, part in pairs(workspace:GetChildren()) do
             if not Spamming then return end -- **Exit if toggled off**
             chr = getchr()
-            if part:IsA("BasePart") and part:FindFirstChildWhichIsA("TouchTransmitter") and part.Name == "사라지는 파트" then
+            if part:IsA("BasePart") and part:FindFirstChildWhichIsA("TouchTransmitter") and part.Name == "사라지는 파트" and part.CanCollide = true then
                 firetouchinterest(chr.HumanoidRootPart, part, 0)
                 firetouchinterest(chr.HumanoidRootPart, part, 1)
 
