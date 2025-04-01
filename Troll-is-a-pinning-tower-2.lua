@@ -84,9 +84,10 @@ ToggleButton.MouseButton1Click:Connect(function()
     end
 end)
 
-lplr.CharacterAdded:Connect(function(char)
- local hrp = char:FindFirstChild("HumanoidRootPart")
- if hrp and gold then 
-  hrp.CFrame = gold.CFrame * CFrame.new(10, 0, 0)
-  end
+lplr.CharacterAppearanceLoaded:Connect(function()
+    local chr = getchr()
+    local hrp = chr:WaitForChild("HumanoidRootPart")
+    if hrp and gold then
+        hrp.CFrame = gold.CFrame * CFrame.new(10, 0, 0)
+    end
 end)
