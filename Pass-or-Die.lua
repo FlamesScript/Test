@@ -5,7 +5,7 @@ local window = library:CreateWindow("Pass or Die")
 getgenv().a5 = nil
 
 local directions = { "Forward", "Left", "Right" }
-local event = game:GetService("ReplicatedStorage").Rounds.Core.Default.Remotes.Pass
+local event = game:GetService("ReplicatedStorage").Gameplay.Core.Default.Remotes.Pass
 local bombsFolder = workspace:FindFirstChild("Bombs")
 
 window:AddToggle({
