@@ -11,7 +11,7 @@ local Teams = game:GetService("Teams")
 local LocalPlayer = Players.LocalPlayer
 
 local Exploit = (syn and "Synapse")
-local HttpRequest = syn.request 
+local HttpRequest = game:GetService("HttpService") 
 local GetGarbageCollection = getgc
 local MoveMouse = mousemoverel
 local ProtectGui = syn.protect_gui
