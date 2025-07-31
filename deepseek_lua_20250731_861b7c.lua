@@ -455,12 +455,14 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
+-- local Section = Window:Section({ Title = "Tabs", Icon = "bug", Opened = true }) 
+
 --> Main TAB <--
-local MainTab = WindUI:Tab({ Title = "Main", Icon = "house", Locked = false })
+local MainTab = Window:Tab({ Title = "Main", Icon = "house", Locked = false })
 
 -- ========== Steal Helper ==========
 
-local StealHelper = WindUI:Tab({ Title = "Steal Helper", Icon = "crown", Locked = false })
+local StealHelper = Window:Tab({ Title = "Steal Helper", Icon = "crown", Locked = false })
 
 local Antihit_Toggle 
 Antihit_Toggle = StealHelper:Toggle({
@@ -494,7 +496,7 @@ Antihit_Toggle = StealHelper:Toggle({
 })
 
 --> PLAYER TAB <--
-local PlayerTab = WindUI:Tab({ Title = "Player", Icon = "user", Locked = false })
+local PlayerTab = Window:Tab({ Title = "Player", Icon = "user", Locked = false })
 
 local Toggle_SmallSpeed, Toggle_SpeedBoost, Toggle_MaxSpeed
 
@@ -767,7 +769,7 @@ EnableJumpPower_toggle = PlayerTab:Toggle({
     end
 })
 
-local HelperTab = WindUI:Tab({ Title = "Helper", Icon = "briefcase-medical", Locked = false })
+local HelperTab = Window:Tab({ Title = "Helper", Icon = "briefcase-medical", Locked = false })
 
 HelperTab:Toggle({
     Title = "Player ESP",
@@ -818,7 +820,7 @@ HelperTab:Toggle({
 })
 
 -- ========== SERVER TAB ==========
-local ServerTab = WindUI:Tab({
+local ServerTab = Window:Tab({
     Title = "Server",
     Icon = "server",
     Locked = false,
@@ -1048,7 +1050,7 @@ ServerTab:Toggle({
     end
 })
 
-local ConfigTab = WindUI:Tab({
+local ConfigTab = Window:Tab({
     Title = "Configs",
     Icon = "file-cog",
     Locked = false,
