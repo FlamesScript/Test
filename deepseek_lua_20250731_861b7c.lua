@@ -1080,4 +1080,4 @@ ConfigTab:Button({
 })
 
 -- Load config on startup
-myConfig:Load()
+pcall(myConfig:Load())
