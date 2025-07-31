@@ -88,25 +88,6 @@ local function WebSlingAction()
     end)
 end
 
--- ========== ANTI-TRAP FUNCTIONS ==========
-
--- Scans for and removes trap objects
-local function doAntiTrap()
-    if not Settings.AntiTrap.Enabled then return end
-    for _, obj in pairs(Workspace:GetChildren()) do
-        if obj:IsA("Model") and tostring(obj):lower():find("trap") then
-            for _, v in pairs(obj:GetChildren()) do
-                if v.Name:lower() == "open" and v:IsA("BasePart") then
-                    v:Destroy()
-                end
-            end
-        end
-    end
-end
-
--- Connects workspace changes to anti-trap
-Workspace.ChildAdded:Connect(doAntiTrap)
-
 -- ========== ESP FUNCTIONS ==========
 
 -- Creates ESP for players
@@ -457,15 +438,16 @@ Window:EditOpenButton({
 
 -- local Section = Window:Section({ Title = "Tabs", Icon = "bug", Opened = true }) 
 
+local Success, Error = pcall(function()
 --> Main TAB <--
 local MainTab = Window:Tab({ Title = "Main", Icon = "house", Locked = false })
 
 -- ========== Steal Helper ==========
 
-local StealHelper = Window:Tab({ Title = "Steal Helper", Icon = "crown", Locked = false })
+local StealHelperTab = Window:Tab({ Title = "Steal Helper", Icon = "crown", Locked = false })
 
 local Antihit_Toggle 
-Antihit_Toggle = StealHelper:Toggle({
+Antihit_Toggle = StealHelperTab:Toggle({
     Title = "Anti Hit",
     Desc = "Become unhittable for 10/s",
     Type = "Checkbox",
@@ -494,8 +476,10 @@ Antihit_Toggle = StealHelper:Toggle({
         end
     end
 })
-
+end)
+if not Success then warn(`StealHelperTab: | {Error}`) end
 --> PLAYER TAB <--
+local Success, Error = pcall(function()
 local PlayerTab = Window:Tab({ Title = "Player", Icon = "user", Locked = false })
 
 local Toggle_SmallSpeed, Toggle_SpeedBoost, Toggle_MaxSpeed
@@ -768,7 +752,11 @@ EnableJumpPower_toggle = PlayerTab:Toggle({
         end
     end
 })
+end)
 
+if not Success then warn(`PlayerTab: | {Error}`) end
+
+local Success, Error = pcall(function()
 local HelperTab = Window:Tab({ Title = "Helper", Icon = "briefcase-medical", Locked = false })
 
 HelperTab:Toggle({
@@ -819,7 +807,41 @@ HelperTab:Toggle({
     end
 })
 
--- ========== SERVER TAB ==========
+HelperTaber:Toggle({
+  Title = "Anti Trap"
+  Desc = ""
+  Default = false
+  Callback = function(state)
+    if state == true then
+      conn = nil
+      
+      if conn then conn:Disconnect() end
+      
+      local function antiTrap()
+        for _, obj in pairs(Workspace:GetChildren()) do
+          if obj:IsA("Model") and obj.Name:lower() == ("trap") then
+            for _, v in pairs(obj:GetChildren()) do
+              if v.Name:lower() == ("open") and v:IsA("BasePart") then
+                v:Destroy()
+              end
+            end
+          end
+        end
+      end
+      
+     antiTrap()
+     conn = Workspace.ChildAdded:Connect(antiTrap)
+     else
+       if conn then conn:Disconnect() end
+    end
+  end
+})
+end)
+
+if not Success then warn(`HelperTab: | {Error}`) end
+
+-->> SERVER TAB <<--
+local Success, Error = pcall(function()
 local ServerTab = Window:Tab({
     Title = "Server",
     Icon = "server",
@@ -1049,6 +1071,9 @@ ServerTab:Toggle({
         end
     end
 })
+end)
+
+if not Success then warn(`ServerTab: | {Error}`) end
 
 local ConfigTab = Window:Tab({
     Title = "Configs",
