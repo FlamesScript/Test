@@ -50,9 +50,10 @@ G2L["TextButton2_4"]["BackgroundColor3"] = Color3.fromRGB(51, 51, 51)
 G2L["TextButton2_4"]["FontFace"] =
     Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 G2L["TextButton2_4"]["Size"] = UDim2.new(0.9, 0, 0.2, 0)
-G2L["TextButton2_4"]["Name"] = "Server Hop"
+G2L["TextButton2_4"]["Name"] = "jshshsh"
 G2L["TextButton2_4"]["Position"] = UDim2.new(0.05051, 0, 0.55, 0)
-G2L["TextButton2_4"]["Active"] = true
+G2L["TextButton2_4"]["Active"] = false
+G2L["TextButton2_4"]["Text"] = "Server Hop"
 
 G2L["UICorner_5"] = Instance.new("UICorner", G2L["TextButton2_4"])
 
