@@ -96,8 +96,8 @@ local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/rel
 local function notify(title, content, duration)
     WindUI:Notify(
         {
-            Title = title,
-            Content = content,
+            Title = title or "",
+            Content = content or "",
             Icon = "droplet-off",
             Duration = duration or 5
         }
@@ -108,7 +108,7 @@ CreateToggle(
     G2L["TextButton_7"],
     function(state)
         local conn = nil
-
+        notify("Get the Brainrot")
         if state == true then
             if conn then
                 conn:Disconnect()
@@ -130,7 +130,7 @@ CreateToggle(
                                 if
                                     newState == Enum.HumanoidStateType.Physics or
                                         newState == Enum.HumanoidStateType.Ragdoll or
-                                        newState == Enum.HumanoidStateType.FallingDown
+                                        newState == Enum.HumanoidStateType.FallingDown and state
                                  then
                                     for _, v in workspace:GetDescendants() do
                                         if v:IsA("ProximityPrompt") then
@@ -144,7 +144,7 @@ CreateToggle(
                                                 )
                                             else
                                                 rootPart.Anchored = false
-                                                G2L["TextButton_7"]["Text"] = "Start"
+                                                
                                             end
                                         end
                                     end
@@ -156,6 +156,7 @@ CreateToggle(
             )
         else
             GetCharacter():FindFirstChild("HumanoidRootPart").Anchored = false
+            G2L["TextButton_7"]["Text"] = "Start"
         end
     end
 )
