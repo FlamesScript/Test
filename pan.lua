@@ -7,6 +7,9 @@ local TeleportService = cloneref(game:GetService("TeleportService"))
 
 local player = Players.LocalPlayer
 
+if ScriptLoaded then warn("Script is runing...") end
+pcall(function() getgenv().ScriptLoaded = true end)
+  
 function GetCharacter()
     return player.Character or player.CharacterAdded:Wait()
 end
@@ -131,7 +134,7 @@ CreateToggle(
                                  then
                                     for _, v in workspace:GetDescendants() do
                                         if v:IsA("ProximityPrompt") then
-                                            local obj = v.Parent
+                                            local obj = v.Parent:FindChildAncestorWhichIsA("BasePart")
                                             local distance = (char.HumanoidRootPart.Position - obj.WorldPosition).Magnitude
                                             if distance > 5 then
                                                 pcall(
@@ -370,3 +373,5 @@ RunService.Heartbeat:Connect(
         end
     end
 )
+
+print("Script Loaded!")
