@@ -50,7 +50,7 @@ G2L["TextButton2_4"]["BackgroundColor3"] = Color3.fromRGB(51, 51, 51)
 G2L["TextButton2_4"]["FontFace"] =
     Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 G2L["TextButton2_4"]["Size"] = UDim2.new(0.9, 0, 0.2, 0)
-G2L["TextButton2_4"]["Name"] = "Start"
+G2L["TextButton2_4"]["Name"] = "Server Hop"
 G2L["TextButton2_4"]["Position"] = UDim2.new(0.05051, 0, 0.55, 0)
 G2L["TextButton2_4"]["Active"] = true
 
@@ -80,7 +80,7 @@ G2L["TextButton_7"]["FontFace"] =
     Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 G2L["TextButton_7"]["Size"] = UDim2.new(0.9, 0, 0.2, 0)
 G2L["TextButton_7"]["Position"] = UDim2.new(0.05051, 0, 0.27826, 0)
-G2L["TextButton_7"]["Text"] = "Server Hop"
+G2L["TextButton_7"]["Text"] = [[Start]]
 
 G2L["UICorner_8"] = Instance.new("UICorner", G2L["TextButton_7"])
 
@@ -101,7 +101,7 @@ local function notify(title, content, duration)
 end
 
 CreateToggle(
-    G2L["TextButton2_4"],
+    G2L["TextButton_7"],
     function(state)
         local conn = nil
 
@@ -119,6 +119,7 @@ CreateToggle(
                         local rootPart = char:FindFirstChild("HumanoidRootPart")
 
                         rootPart.Anchored = true
+                        G2L["TextButton_7"]["Text"] = "Stop"
 
                         humanoid.StateChanged:Once(
                             function(_, newState)
@@ -130,8 +131,7 @@ CreateToggle(
                                     for _, v in workspace:GetDescendants() do
                                         if v:IsA("ProximityPrompt") then
                                             local obj = v.Parent
-                                            local distance =
-                                                (char.HumanoidRootPart.Position - obj.WorldPivot.Position).Magnitude
+                                            local distance = (char.HumanoidRootPart.Position - obj.WorldPosition).Magnitude
                                             if distance > 5 then
                                                 pcall(
                                                     function()
@@ -140,6 +140,7 @@ CreateToggle(
                                                 )
                                             else
                                                 rootPart.Anchored = false
+                                                G2L["TextButton_7"]["Text"] = "Start"
                                             end
                                         end
                                     end
@@ -156,7 +157,7 @@ CreateToggle(
 )
 
 CreateToggle(
-    G2L["TextButton_7"],
+    G2L["TextButton2_4"],
     function(state)
         local servers = {}
         local PlaceId = game.PlaceId
