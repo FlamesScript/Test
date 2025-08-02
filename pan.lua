@@ -135,7 +135,7 @@ CreateToggle(
                                     for _, v in workspace:GetDescendants() do
                                         if v:IsA("ProximityPrompt") then
                                             local obj = v.Parent:FindFirstAncestorWhichIsA("BasePart")
-                                            local distance = (char.HumanoidRootPart.Position - obj.WorldPosition).Magnitude
+                                            local distance = (char.HumanoidRootPart.Position - obj.Position).Magnitude
                                             if distance > 5 then
                                                 pcall(
                                                     function()
