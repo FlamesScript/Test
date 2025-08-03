@@ -7,9 +7,15 @@ local TeleportService = cloneref(game:GetService("TeleportService"))
 
 local player = Players.LocalPlayer
 
-if ScriptLoaded then warn("Script is runing...") end
-pcall(function() getgenv().ScriptLoaded = true end)
-  
+if ScriptLoaded then
+    warn("Script is runing...")
+end
+pcall(
+    function()
+        getgenv().ScriptLoaded = true
+    end
+)
+
 function GetCharacter()
     return player.Character or player.CharacterAdded:Wait()
 end
@@ -108,7 +114,9 @@ CreateToggle(
     G2L["TextButton_7"],
     function(state)
         local conn = nil
+
         notify("Get the Brainrot")
+
         if state == true then
             if conn then
                 conn:Disconnect()
@@ -132,22 +140,7 @@ CreateToggle(
                                         newState == Enum.HumanoidStateType.Ragdoll or
                                         newState == Enum.HumanoidStateType.FallingDown and state
                                  then
-                                    for _, v in workspace:GetDescendants() do
-                                        if v:IsA("ProximityPrompt") then
-                                            local obj = v.Parent.Parent
-                                            local distance = (char.HumanoidRootPart.Position - obj.Position).Magnitude
-                                            if distance > 5 then
-                                                pcall(
-                                                    function()
-                                                        v:InputHoldBegin()
-                                                    end
-                                                )
-                                            else
-                                                rootPart.Anchored = false
-                                                
-                                            end
-                                        end
-                                    end
+                                    prompt:InputHoldBegin()
                                 end
                             end
                         )
