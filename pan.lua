@@ -140,7 +140,14 @@ CreateToggle(
                                         newState == Enum.HumanoidStateType.Ragdoll or
                                         newState == Enum.HumanoidStateType.FallingDown and state
                                  then
+                                   prompt:GetPropertyChangedSignal("Enabled"):Once(function(state)
+                                     if state then
                                     prompt:InputHoldBegin()
+                                     elseif not state then
+                                    prompt.Enabled = true
+                                    prompt:InputHoldBegin()
+                                     end
+                                    end)
                                 end
                             end
                         )
